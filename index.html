@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EERA Foundation — Transforming Communities</title>
+    <!-- Premium Fonts: Playfair Display (Serif) + Manrope (Sans) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="loading">
+
+<!-- Custom Cursor -->
+<div class="cursor"></div>
+<div class="cursor-follower"></div>
+
+<!-- Noise Overlay -->
+<div class="noise"></div>
+
+<!-- Preloader -->
+<div class="preloader">
+    <div class="preloader-text">EERA<br>Foundation</div>
+    <div class="preloader-progress"></div>
+</div>
+
+<!-- Header -->
+<header class="header">
+    <div class="header-inner">
+        <a href="#" class="logo">EERA.</a>
+        <nav class="nav">
+            <a href="#about" class="nav-link" data-hover="Our Story">Our Story</a>
+            <a href="#initiatives" class="nav-link" data-hover="Initiatives">Initiatives</a>
+            <a href="#impact" class="nav-link" data-hover="Impact">Impact</a>
+            <a href="#" class="nav-btn open-donate">Donate</a>
+        </nav>
+        <button class="menu-btn open-contact">Get in Touch <i class="ph ph-arrow-right"></i></button>
+    </div>
+</header>
+
+<!-- Main Smooth Scroll Wrapper -->
+<main class="smooth-scroll" id="scroll-wrapper">
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <h1 class="hero-title">
+                <div class="line-mask"><span class="line-inner">Empowering</span></div>
+                <div class="line-mask"><span class="line-inner italic indent">Lives</span></div>
+                <div class="line-mask"><span class="line-inner">Transforming</span></div>
+                <div class="line-mask"><span class="line-inner right italic">Communities.</span></div>
+            </h1>
+            <div class="hero-bottom">
+                <p class="hero-desc reveal-fade">A non-profit organization dedicated to healthcare, education, and social justice across India.</p>
+                <div class="hero-scroll reveal-fade">
+                    <span>Scroll</span>
+                    <div class="scroll-line"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Large Text About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-flex">
+                <div class="about-label">( 01 — Mission )</div>
+                <h2 class="about-text split-text">
+                    We believe that every person deserves access to quality healthcare, education, and the fundamental dignity of social justice. Together, we are bridging the gap.
+                </h2>
+            </div>
+            <div class="about-image-grid mt-20">
+                <div class="img-wrap parallax" data-speed="1.1"><img src="assets/education.png" alt="Education"></div>
+                <div class="img-wrap parallax" data-speed="0.9"><img src="assets/social-upliftment.png" alt="Social upliftment"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Rows for Initiatives -->
+    <section class="initiatives" id="initiatives">
+        <div class="container">
+            <div class="section-label">( 02 — Focus Areas )</div>
+            
+            <div class="initiatives-list">
+                
+                <div class="initiative-row" data-image="assets/health-camp.png">
+                    <div class="row-num">01</div>
+                    <h3 class="row-title">Health Camps</h3>
+                    <div class="row-desc">Providing free diagnostics, specialist consultations, and essential medicines in rural areas.</div>
+                    <div class="row-arrow"><i class="ph ph-arrow-right"></i></div>
+                </div>
+
+                <div class="initiative-row" data-image="assets/health-assistance.png">
+                    <div class="row-num">02</div>
+                    <h3 class="row-title">Health Assistance</h3>
+                    <div class="row-desc">Continuous medical support, emergency referrals, and chronic disease management.</div>
+                    <div class="row-arrow"><i class="ph ph-arrow-right"></i></div>
+                </div>
+
+                <div class="initiative-row" data-image="assets/education.png">
+                    <div class="row-num">03</div>
+                    <h3 class="row-title">Education</h3>
+                    <div class="row-desc">Scholarships, school supplies, and digital literacy programs for the next generation.</div>
+                    <div class="row-arrow"><i class="ph ph-arrow-right"></i></div>
+                </div>
+
+                <div class="initiative-row" data-image="assets/social-upliftment.png">
+                    <div class="row-num">04</div>
+                    <h3 class="row-title">Social Upliftment</h3>
+                    <div class="row-desc">Women empowerment, vocational training, and self-help group formation.</div>
+                    <div class="row-arrow"><i class="ph ph-arrow-right"></i></div>
+                </div>
+
+                <div class="initiative-row" data-image="assets/social-justice.png">
+                    <div class="row-num">05</div>
+                    <h3 class="row-title">Social Justice</h3>
+                    <div class="row-desc">Championing equality, providing legal aid, and driving awareness campaigns.</div>
+                    <div class="row-arrow"><i class="ph ph-arrow-right"></i></div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Hover Image Reveal Container -->
+        <div class="hover-image-reveal">
+            <img src="" alt="" class="hover-img">
+        </div>
+    </section>
+
+    <!-- Massive Impact Stats -->
+    <section class="impact-stats" id="impact">
+        <div class="container">
+            <div class="section-label mb-10">( 03 — The Impact )</div>
+            <div class="stats-grid">
+                
+                <div class="stat-item">
+                    <div class="stat-num"><span class="counter" data-target="50">0</span>k+</div>
+                    <div class="stat-text">Lives Benefited</div>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-num"><span class="counter" data-target="200">0</span>+</div>
+                    <div class="stat-text">Medical Camps</div>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-num"><span class="counter" data-target="5">0</span>k+</div>
+                    <div class="stat-text">Students Aided</div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Minimalist Horizontal Timeline / Journey -->
+    <section class="journey">
+        <div class="container">
+            <div class="section-label mb-10">( 04 — Our Journey )</div>
+            
+            <div class="journey-list">
+                <div class="journey-row reveal-fade">
+                    <div class="j-year">2015</div>
+                    <div class="j-info">
+                        <h4 class="j-title">Foundation</h4>
+                        <p>Established with a vision to bring quality healthcare to remote villages.</p>
+                    </div>
+                </div>
+                <div class="journey-row reveal-fade">
+                    <div class="j-year">2017</div>
+                    <div class="j-info">
+                        <h4 class="j-title">Education Drive</h4>
+                        <p>Launched flagship scholarships and digital learning initiatives.</p>
+                    </div>
+                </div>
+                <div class="journey-row reveal-fade">
+                    <div class="j-year">2020</div>
+                    <div class="j-info">
+                        <h4 class="j-title">Crisis Response</h4>
+                        <p>Distributed essential medical supplies to 10,000+ families during the pandemic.</p>
+                    </div>
+                </div>
+                <div class="journey-row reveal-fade">
+                    <div class="j-year">2024</div>
+                    <div class="j-info">
+                        <h4 class="j-title">Mega Scaling</h4>
+                        <p>Organized 50+ health camps in a single year, reaching over 15,000 patients.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Full Screen Footer CTA -->
+    <footer class="footer" id="contact">
+        <div class="footer-top">
+            <div class="container">
+                <h2 class="footer-title">
+                    <div class="line-mask"><span class="line-inner">Be the</span></div>
+                    <div class="line-mask"><span class="line-inner italic">Change.</span></div>
+                </h2>
+                <div class="footer-actions">
+                    <a href="#" class="magnetic-btn open-donate">
+                        <span class="text">Donate Now</span>
+                    </a>
+                    <a href="#" class="magnetic-btn outline open-contact">
+                        <span class="text">Contact Us</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="f-col">
+                        <h4>EERA Foundation</h4>
+                        <p>New Delhi, India</p>
+                    </div>
+                    <div class="f-col">
+                        <h4>Contact</h4>
+                        <a href="mailto:info@eerafoundation.org" class="hover-line">info@eerafoundation.org</a>
+                        <br>
+                        <a href="tel:+919876543210" class="hover-line">+91 98765 43210</a>
+                    </div>
+                    <div class="f-col">
+                        <h4>Socials</h4>
+                        <div class="social-links">
+                            <a href="#" class="hover-line">Instagram</a>
+                            <a href="#" class="hover-line">LinkedIn</a>
+                            <a href="#" class="hover-line">Twitter</a>
+                        </div>
+                    </div>
+                    <div class="f-col right">
+                        <p>&copy; 2025 EERA Foundation.<br>All rights reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</main>
+
+<!-- Fullscreen Slide-out Contact Modal -->
+<div class="contact-modal" id="contactModal">
+    <div class="modal-bg close-contact"></div>
+    <div class="modal-content">
+        <button class="modal-close close-contact">
+            <i class="ph ph-x"></i>
+        </button>
+        <div class="modal-header">
+            <div class="section-label mb-10">( Let's Talk )</div>
+            <h2 class="modal-title">Get in Touch.</h2>
+        </div>
+        
+        <!-- Uses Web3Forms to send directly to email without a backend -->
+        <form class="contact-form" action="https://api.web3forms.com/submit" method="POST" id="contactForm">
+            <!-- Web3Forms Access Key -->
+            <input type="hidden" name="access_key" value="546b5db8-9d31-4df0-a1fe-11091cb63e57">
+            <input type="hidden" name="subject" value="New Contact from EERA Website">
+            
+            <div class="input-group">
+                <input type="text" name="name" required placeholder=" ">
+                <label>Your Name</label>
+            </div>
+            <div class="input-group">
+                <input type="email" name="email" required placeholder=" ">
+                <label>Your Email</label>
+            </div>
+            <div class="input-group">
+                <textarea name="message" required placeholder=" " rows="4"></textarea>
+                <label>How can we help?</label>
+            </div>
+            <button type="submit" class="submit-btn magnetic-target">Send Message <i class="ph ph-arrow-right"></i></button>
+            <p class="form-status" id="formStatus"></p>
+        </form>
+    </div>
+</div>
+
+<!-- Fullscreen Slide-out Donate Modal -->
+<div class="contact-modal" id="donateModal">
+    <div class="modal-bg close-donate"></div>
+    <div class="modal-content">
+        <button class="modal-close close-donate">
+            <i class="ph ph-x"></i>
+        </button>
+        <div class="modal-header">
+            <div class="section-label mb-10">( Support Us )</div>
+            <h2 class="modal-title">Make a Pledge.</h2>
+        </div>
+        
+        <form class="contact-form" action="https://api.web3forms.com/submit" method="POST" id="donateForm">
+            <!-- Web3Forms Access Key -->
+            <input type="hidden" name="access_key" value="546b5db8-9d31-4df0-a1fe-11091cb63e57">
+            <input type="hidden" name="subject" value="New Donation Pledge from EERA Website">
+            
+            <div class="input-group">
+                <input type="number" name="amount" required placeholder=" ">
+                <label>Pledge Amount (INR/USD)</label>
+            </div>
+            <div class="input-group">
+                <input type="text" name="name" required placeholder=" ">
+                <label>Your Name</label>
+            </div>
+            <div class="input-group">
+                <input type="email" name="email" required placeholder=" ">
+                <label>Your Email</label>
+            </div>
+            <div class="input-group">
+                <textarea name="message" placeholder=" " rows="2"></textarea>
+                <label>Any special notes?</label>
+            </div>
+            <button type="submit" class="submit-btn magnetic-target">Send Pledge <i class="ph ph-arrow-right"></i></button>
+            <p class="form-status" id="donateFormStatus"></p>
+        </form>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
