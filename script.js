@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 1. Custom Cursor setup
     const cursor = document.querySelector('.cursor');
     const follower = document.querySelector('.cursor-follower');
-    const hoverables = document.querySelectorAll('a, button, .initiative-row, .magnetic-btn');
+    const hoverables = document.querySelectorAll('a, button, .initiative-row, .magnetic-btn, .gallery-item');
 
     let mouseX = 0, mouseY = 0;
     let followerX = 0, followerY = 0;
@@ -291,6 +291,107 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         }
+    });
+
+    // 10. Gallery Lightbox
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxContent = document.getElementById('lightboxContent');
+    const lightboxClose = document.getElementById('lightboxClose');
+    const lightboxPrev = document.getElementById('lightboxPrev');
+    const lightboxNext = document.getElementById('lightboxNext');
+
+    let currentGalleryIndex = 0;
+    const galleryData = [];
+
+    // Collect gallery items data
+    galleryItems.forEach((item, i) => {
+        const img = item.querySelector('img');
+        const video = item.querySelector('video');
+        if(img) {
+            galleryData.push({ type: 'image', src: img.src, alt: img.alt });
+        } else if(video) {
+            galleryData.push({ type: 'video', src: video.src });
+        }
+    });
+
+    function openLightbox(index) {
+        if(!lightbox || !lightboxContent) return;
+        currentGalleryIndex = index;
+        updateLightboxContent();
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+        if(!lightbox) return;
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+        // Pause any video
+        const vid = lightboxContent.querySelector('video');
+        if(vid) vid.pause();
+    }
+
+    function updateLightboxContent() {
+        if(!lightboxContent) return;
+
+        const item = galleryData[currentGalleryIndex];
+        if(item.type === 'image') {
+            lightboxContent.innerHTML = `<img src="${item.src}" alt="${item.alt || ''}">`;
+        } else if(item.type === 'video') {
+            lightboxContent.innerHTML = `<video src="${item.src}" controls autoplay playsinline style="max-width:90vw;max-height:85vh;border-radius:4px;"></video>`;
+        }
+    }
+
+    function navigateLightbox(direction) {
+        // Pause current video if any
+        const vid = lightboxContent.querySelector('video');
+        if(vid) vid.pause();
+
+        currentGalleryIndex += direction;
+        if(currentGalleryIndex < 0) currentGalleryIndex = galleryData.length - 1;
+        if(currentGalleryIndex >= galleryData.length) currentGalleryIndex = 0;
+        updateLightboxContent();
+    }
+
+    // Gallery item click
+    galleryItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const index = parseInt(item.getAttribute('data-index'));
+            openLightbox(index);
+        });
+    });
+
+    // Gallery video hover play
+    galleryItems.forEach(item => {
+        const video = item.querySelector('video');
+        if(video) {
+            item.addEventListener('mouseenter', () => {
+                video.play().catch(() => {});
+            });
+            item.addEventListener('mouseleave', () => {
+                video.pause();
+            });
+        }
+    });
+
+    if(lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+    if(lightboxPrev) lightboxPrev.addEventListener('click', () => navigateLightbox(-1));
+    if(lightboxNext) lightboxNext.addEventListener('click', () => navigateLightbox(1));
+
+    // Close lightbox on background click
+    if(lightbox) {
+        lightbox.addEventListener('click', (e) => {
+            if(e.target === lightbox) closeLightbox();
+        });
+    }
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if(!lightbox || !lightbox.classList.contains('active')) return;
+        if(e.key === 'Escape') closeLightbox();
+        if(e.key === 'ArrowLeft') navigateLightbox(-1);
+        if(e.key === 'ArrowRight') navigateLightbox(1);
     });
 
 });
