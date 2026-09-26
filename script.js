@@ -508,7 +508,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Post-payment screens: confirming → thank you / pending / not completed.
         const donateResult = document.getElementById('donateResult');
         const donatePanel = donateModal.querySelector('.modal-content');
-        const CONTACT_EMAIL = 'kirtivardhan075@gmail.com';
+        const CONTACT_EMAIL = 'eerafoundation723@gmail.com';
         const esc = str => String(str ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
         const formatDate = value => {
             const date = value ? new Date(value) : new Date();
