@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EERA Foundation — Transforming Communities</title>
-    <meta name="description" content="EERA Human Health Foundation — Empowering lives through healthcare, education, and social justice in Bettiah, Bihar, India.">
+    <meta name="description" content="EERA Human Health Foundation — Empowering lives through healthcare, education, and social justice across Bihar &amp; Jharkhand, India. 12A &amp; 80G certified.">
     <!-- Premium Fonts: Playfair Display (Serif) + Manrope (Sans) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,42 +13,52 @@
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body class="loading">
+<body>
+<a class="skip-link" href="#scroll-wrapper">Skip to content</a>
+<div class="page-progress" aria-hidden="true"></div>
 
 <!-- Custom Cursor -->
-<div class="cursor"></div>
-<div class="cursor-follower"></div>
+
+
 
 <!-- Noise Overlay -->
 <div class="noise"></div>
 
 <!-- Preloader -->
-<div class="preloader">
-    <div class="preloader-text">EERA<br>Foundation</div>
+<div class="preloader" aria-hidden="true">
+    <div class="preloader-text brand-light">
+        <span class="brand-mark brand-mark-loading"><img src="assets/brand/eera-logo-transparent.png" alt="EERA Foundation — सेवा • शिक्षा • स्वास्थ्य" width="1774" height="887" fetchpriority="high"></span>
+    </div>
     <div class="preloader-progress"></div>
 </div>
 
 <!-- Header -->
 <header class="header">
     <div class="header-inner">
-        <a href="#" class="logo">EERA.</a>
-        <nav class="nav">
+        <a href="#" class="logo" aria-label="EERA Foundation home">
+            <span class="brand-mark"><img src="assets/brand/eera-logo-transparent.png" alt="EERA Foundation — सेवा • शिक्षा • स्वास्थ्य" width="1774" height="887" fetchpriority="high"></span>
+        </a>
+        <nav class="nav" id="primaryNav" aria-label="Main navigation">
             <a href="#about" class="nav-link" data-hover="Our Story">Our Story</a>
             <a href="#team" class="nav-link" data-hover="Team">Team</a>
             <a href="#initiatives" class="nav-link" data-hover="Initiatives">Initiatives</a>
             <a href="#gallery" class="nav-link" data-hover="Gallery">Gallery</a>
             <a href="#" class="nav-btn open-donate">Donate</a>
+            <button class="nav-contact open-contact">Get in touch</button>
         </nav>
+        <button class="nav-toggle" aria-expanded="false" aria-controls="primaryNav"><span>Menu</span><span class="nav-toggle-icon" aria-hidden="true"></span></button>
         <button class="menu-btn open-contact">Get in Touch <i class="ph ph-arrow-right"></i></button>
     </div>
 </header>
 
 <!-- Main Smooth Scroll Wrapper -->
-<main class="smooth-scroll" id="scroll-wrapper">
+<main class="smooth-scroll" id="scroll-wrapper" tabindex="-1">
     
     <!-- Hero Section -->
     <section class="hero">
+        <div class="hero-halo" aria-hidden="true"></div>
         <div class="hero-container">
+            <p class="hero-eyebrow reveal-fade">Rooted in care. Growing together.</p>
             <h1 class="hero-title">
                 <div class="line-mask"><span class="line-inner">Empowering</span></div>
                 <div class="line-mask"><span class="line-inner italic indent">Lives</span></div>
@@ -56,11 +66,17 @@
                 <div class="line-mask"><span class="line-inner right italic">Communities.</span></div>
             </h1>
             <div class="hero-bottom">
-                <p class="hero-desc reveal-fade">A non-profit organization dedicated to healthcare, education, and social justice across India.</p>
-                <div class="hero-scroll reveal-fade">
-                    <span>Scroll</span>
-                    <div class="scroll-line"></div>
+                <div class="hero-intro reveal-fade">
+                    <p class="hero-desc">A non-profit organization dedicated to healthcare, education, and social justice across India.</p>
+                    <div class="hero-actions">
+                        <a class="hero-action" href="#initiatives">Explore our work <span aria-hidden="true">↗</span></a>
+                        <button class="hero-support open-donate">Make a difference <span aria-hidden="true">↗</span></button>
+                    </div>
                 </div>
+                <a class="hero-scroll reveal-fade" href="#about" aria-label="Scroll to our mission">
+                    <span>Scroll</span>
+                    <span class="scroll-line" aria-hidden="true"></span>
+                </a>
             </div>
         </div>
     </section>
@@ -75,8 +91,26 @@
                 </h2>
             </div>
             <div class="about-image-grid mt-20">
-                <div class="img-wrap parallax" data-speed="1.1"><img src="assets/education-real.jpeg" alt="Children studying at EERA VidyaGram center"></div>
-                <div class="img-wrap parallax" data-speed="0.9"><img src="assets/certificate-1.jpeg" alt="Certificate distribution at EERA Foundation"></div>
+                <figure class="mission-photo">
+                    <div class="mission-photo-frame">
+                        <img class="mission-photo-learning" src="assets/education-real.jpeg" alt="Children studying together at EERA VidyaGram center" width="1200" height="1600" loading="lazy" decoding="async">
+                    </div>
+                    <figcaption>
+                        <span class="mission-photo-label">Education · VidyaGram</span>
+                        <h3>A place to learn. A chance to grow.</h3>
+                        <p>A shared space where children can study, discover, and build their confidence.</p>
+                    </figcaption>
+                </figure>
+                <figure class="mission-photo">
+                    <div class="mission-photo-frame">
+                        <img class="mission-photo-community" src="assets/certificate-1.jpeg" alt="A student receiving a certificate from EERA Foundation representatives" width="960" height="1280" loading="lazy" decoding="async">
+                    </div>
+                    <figcaption>
+                        <span class="mission-photo-label">Community · Recognition</span>
+                        <h3>Celebrating every step forward.</h3>
+                        <p>Recognizing effort and encouraging the people at the heart of our community.</p>
+                    </figcaption>
+                </figure>
             </div>
         </div>
     </section>
@@ -89,7 +123,7 @@
             <div class="team-grid">
                 <div class="team-card reveal-fade">
                     <div class="team-img-wrap">
-                        <img src="assets/team-1.jpeg" alt="Team Member">
+                        <img class="team-portrait team-portrait-1" loading="lazy" decoding="async" src="assets/team-1.jpeg" alt="Kirti Vardhan">
                     </div>
                     <div class="team-info">
                         <h4 class="team-name">Kirti Vardhan</h4>
@@ -98,7 +132,7 @@
                 </div>
                 <div class="team-card reveal-fade">
                     <div class="team-img-wrap">
-                        <img src="assets/team-2.jpeg" alt="Dr. Kumar Shantanu">
+                        <img class="team-portrait team-portrait-2" loading="lazy" decoding="async" src="assets/team-2.jpeg" alt="Dr. Kumar Shantanu">
                     </div>
                     <div class="team-info">
                         <h4 class="team-name">Dr. Kumar Shantanu</h4>
@@ -107,7 +141,7 @@
                 </div>
                 <div class="team-card reveal-fade">
                     <div class="team-img-wrap">
-                        <img src="assets/team-3.jpeg" alt="Dr. Praveen Yadav">
+                        <img class="team-portrait team-portrait-3" loading="lazy" decoding="async" src="assets/team-3.jpeg" alt="Dr. Praveen Yadav">
                     </div>
                     <div class="team-info">
                         <h4 class="team-name">Dr. Praveen Yadav</h4>
@@ -116,7 +150,7 @@
                 </div>
                 <div class="team-card reveal-fade">
                     <div class="team-img-wrap">
-                        <img src="assets/team-4.jpeg" alt="Avinash Shukla">
+                        <img class="team-portrait team-portrait-4" loading="lazy" decoding="async" src="assets/team-4.jpeg" alt="Avinash Shukla">
                     </div>
                     <div class="team-info">
                         <h4 class="team-name">Avinash Shukla</h4>
@@ -134,71 +168,92 @@
             
             <div class="initiatives-list">
                 
-                <div class="initiative-row" data-image="assets/health-camp-2.jpeg">
+                <div class="initiative-row">
                     <div class="row-num">01</div>
                     <h3 class="row-title">Health Camps</h3>
                     <div class="row-desc">Providing free diagnostics, specialist consultations, and essential medicines in rural areas.</div>
-                    <div class="row-arrow"><i class="ph ph-arrow-right"></i></div>
+                    <div class="initiative-photo initiative-photo-care"><img src="assets/health-camp-2.jpeg" alt="A doctor assisting visitors at an EERA health camp" loading="lazy" decoding="async"></div>
                 </div>
 
-                <div class="initiative-row" data-image="assets/health-camp-3.jpeg">
+                <div class="initiative-row">
                     <div class="row-num">02</div>
                     <h3 class="row-title">Health Assistance</h3>
                     <div class="row-desc">Continuous medical support, emergency referrals, and chronic disease management.</div>
-                    <div class="row-arrow"><i class="ph ph-arrow-right"></i></div>
+                    <div class="initiative-photo initiative-photo-care"><img src="assets/health-camp-3.jpeg" alt="Medical consultations at an EERA health camp" loading="lazy" decoding="async"></div>
                 </div>
 
-                <div class="initiative-row" data-image="assets/education-real.jpeg">
+                <div class="initiative-row">
                     <div class="row-num">03</div>
                     <h3 class="row-title">Education</h3>
                     <div class="row-desc">Scholarships, school supplies, and digital literacy programs for the next generation.</div>
-                    <div class="row-arrow"><i class="ph ph-arrow-right"></i></div>
+                    <div class="initiative-photo initiative-photo-learning"><img src="assets/education-real.jpeg" alt="Children studying at VidyaGram" loading="lazy" decoding="async"></div>
                 </div>
 
-                <div class="initiative-row" data-image="assets/certificate-2.jpeg">
+                <div class="initiative-row">
                     <div class="row-num">04</div>
                     <h3 class="row-title">Social Upliftment</h3>
                     <div class="row-desc">Women empowerment, vocational training, and self-help group formation.</div>
-                    <div class="row-arrow"><i class="ph ph-arrow-right"></i></div>
+                    <div class="initiative-photo initiative-photo-community"><img src="assets/certificate-2.jpeg" alt="Certificate presentation at EERA Foundation" loading="lazy" decoding="async"></div>
                 </div>
 
-                <div class="initiative-row" data-image="assets/certificate-3.jpeg">
+                <div class="initiative-row">
                     <div class="row-num">05</div>
                     <h3 class="row-title">Social Justice</h3>
                     <div class="row-desc">Championing equality, providing legal aid, and driving awareness campaigns.</div>
-                    <div class="row-arrow"><i class="ph ph-arrow-right"></i></div>
+                    <div class="initiative-photo initiative-photo-community"><img src="assets/certificate-3.jpeg" alt="A student receiving recognition at EERA Foundation" loading="lazy" decoding="async"></div>
                 </div>
 
             </div>
         </div>
 
-        <!-- Hover Image Reveal Container -->
-        <div class="hover-image-reveal">
-            <img src="" alt="" class="hover-img">
-        </div>
     </section>
 
     <!-- Massive Impact Stats -->
     <section class="impact-stats" id="impact">
         <div class="container">
             <div class="section-label mb-10">( 04 — The Impact )</div>
+            <h2 class="stats-title">EERA Foundation <span class="italic">at a Glance</span></h2>
             <div class="stats-grid">
-                
+
                 <div class="stat-item">
-                    <div class="stat-num"><span class="counter" data-target="50">0</span>k+</div>
-                    <div class="stat-text">Lives Benefited</div>
-                </div>
-                
-                <div class="stat-item">
-                    <div class="stat-num"><span class="counter" data-target="200">0</span>+</div>
-                    <div class="stat-text">Medical Camps</div>
-                </div>
-                
-                <div class="stat-item">
-                    <div class="stat-num"><span class="counter" data-target="5">0</span>k+</div>
-                    <div class="stat-text">Students Aided</div>
+                    <div class="stat-num"><span class="counter" data-target="50">50</span>+</div>
+                    <div class="stat-text">Camps Conducted</div>
                 </div>
 
+                <div class="stat-item">
+                    <div class="stat-num"><span class="counter" data-target="2000">2,000</span>+</div>
+                    <div class="stat-text">Lives Positively Impacted</div>
+                </div>
+
+                <div class="stat-item">
+                    <div class="stat-num"><span class="counter" data-target="100">100</span>s</div>
+                    <div class="stat-text">Students Supported Through Our Educational Centres Regularly</div>
+                </div>
+
+            </div>
+
+            <div class="credentials">
+                <div class="credential">
+                    <i class="ph ph-seal-check"></i>
+                    <div>
+                        <h4>12A &amp; 80G Certified</h4>
+                        <p>Registered non-profit under the Income Tax Act. URN: AAGCE1945FF20261</p>
+                    </div>
+                </div>
+                <div class="credential">
+                    <i class="ph ph-map-pin"></i>
+                    <div>
+                        <h4>Bihar &amp; Jharkhand</h4>
+                        <p>Working actively on the ground across both states.</p>
+                    </div>
+                </div>
+                <div class="credential">
+                    <i class="ph ph-certificate"></i>
+                    <div>
+                        <h4>Udyam Registered</h4>
+                        <p>Govt. of India, Ministry of MSME. UDYAM-BR-38-0066844</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -254,10 +309,10 @@
     </section>
 
     <!-- Lightbox -->
-    <div class="lightbox" id="lightbox">
-        <button class="lightbox-close" id="lightboxClose"><i class="ph ph-x"></i></button>
-        <button class="lightbox-nav lightbox-prev" id="lightboxPrev"><i class="ph ph-caret-left"></i></button>
-        <button class="lightbox-nav lightbox-next" id="lightboxNext"><i class="ph ph-caret-right"></i></button>
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Our work in pictures" aria-hidden="true" inert>
+        <button class="lightbox-close" id="lightboxClose" aria-label="Close gallery"><i class="ph ph-x"></i></button>
+        <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Previous image"><i class="ph ph-caret-left"></i></button>
+        <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next image"><i class="ph ph-caret-right"></i></button>
         <div class="lightbox-content" id="lightboxContent"></div>
     </div>
 
@@ -322,8 +377,11 @@
             <div class="container">
                 <div class="footer-grid">
                     <div class="f-col">
-                        <h4>EERA Foundation</h4>
+                        <a href="#" class="footer-logo brand-light" aria-label="EERA Foundation home">
+                            <span class="brand-mark"><img src="assets/brand/eera-logo-transparent.png" alt="EERA Foundation — सेवा • शिक्षा • स्वास्थ्य" width="1774" height="887" loading="lazy"></span>
+                        </a>
                         <p>Eera Human Health Foundation,<br>Uttarwari Pokhara, Bettiah,<br>West Champaran, Bihar, India</p>
+                        <p class="f-reg">12A &amp; 80G Certified · Udyam: UDYAM-BR-38-0066844<br>Working across Bihar &amp; Jharkhand</p>
                     </div>
                     <div class="f-col">
                         <h4>Contact</h4>
@@ -350,10 +408,10 @@
 </main>
 
 <!-- Fullscreen Slide-out Contact Modal -->
-<div class="contact-modal" id="contactModal">
+<div class="contact-modal" id="contactModal" role="dialog" aria-modal="true" aria-label="Contact EERA Foundation" aria-hidden="true" inert>
     <div class="modal-bg close-contact"></div>
     <div class="modal-content">
-        <button class="modal-close close-contact">
+        <button class="modal-close close-contact" aria-label="Close dialog">
             <i class="ph ph-x"></i>
         </button>
         <div class="modal-header">
@@ -368,33 +426,78 @@
             <input type="hidden" name="subject" value="New Contact from EERA Website">
             
             <div class="input-group">
-                <input type="text" name="name" required placeholder=" ">
-                <label>Your Name</label>
+                <input id="form-field-1" type="text" name="name" required placeholder=" ">
+                <label for="form-field-1">Your Name</label>
             </div>
             <div class="input-group">
-                <input type="email" name="email" required placeholder=" ">
-                <label>Your Email</label>
+                <input id="form-field-2" type="email" name="email" required placeholder=" ">
+                <label for="form-field-2">Your Email</label>
             </div>
             <div class="input-group">
-                <textarea name="message" required placeholder=" " rows="4"></textarea>
-                <label>How can we help?</label>
+                <textarea id="form-field-3" name="message" required placeholder=" " rows="4"></textarea>
+                <label for="form-field-3">How can we help?</label>
             </div>
             <button type="submit" class="submit-btn magnetic-target">Send Message <i class="ph ph-arrow-right"></i></button>
-            <p class="form-status" id="formStatus"></p>
+            <p role="status" class="form-status" id="formStatus"></p>
         </form>
     </div>
 </div>
 
 <!-- Fullscreen Slide-out Donate Modal -->
-<div class="contact-modal" id="donateModal">
+<div class="contact-modal" id="donateModal" role="dialog" aria-modal="true" aria-label="Support EERA Foundation" aria-hidden="true" inert>
     <div class="modal-bg close-donate"></div>
     <div class="modal-content">
-        <button class="modal-close close-donate">
+        <button class="modal-close close-donate" aria-label="Close dialog">
             <i class="ph ph-x"></i>
         </button>
         <div class="modal-header">
             <div class="section-label mb-10">( Support Us )</div>
-            <h2 class="modal-title">Make a Pledge.</h2>
+            <h2 class="modal-title">Make a Donation.</h2>
+        </div>
+
+        <!-- Cashfree donation form (one-time order or monthly subscription, see /api) -->
+        <form class="contact-form donate-form" id="donateForm">
+            <!-- Monthly giving is hidden until Cashfree activates Subscriptions; remove "hidden" to re-enable. -->
+            <div class="donate-toggle" role="radiogroup" aria-label="Donation frequency" hidden>
+                <label><input type="radio" name="frequency" value="once" checked><span>One-time</span></label>
+                <label><input type="radio" name="frequency" value="monthly"><span>Monthly</span></label>
+            </div>
+
+            <div class="amount-chips" role="radiogroup" aria-label="Donation amount">
+                <label><input type="radio" name="preset" value="101"><span>₹101</span></label>
+                <label><input type="radio" name="preset" value="151"><span>₹151</span></label>
+                <label><input type="radio" name="preset" value="251" checked><span>₹251</span></label>
+                <label><input type="radio" name="preset" value="501"><span>₹501</span></label>
+                <label><input type="radio" name="preset" value="1001"><span>₹1,001</span></label>
+            </div>
+
+            <div class="input-group">
+                <input id="form-field-4" type="number" name="amount" min="10" max="500000" step="1" inputmode="numeric" required placeholder=" " value="251">
+                <label for="form-field-4">Amount (₹)</label>
+            </div>
+            <div class="input-group">
+                <input id="form-field-5" type="text" name="name" autocomplete="name" required placeholder=" ">
+                <label for="form-field-5">Your Name</label>
+            </div>
+            <div class="input-group">
+                <input id="form-field-6" type="email" name="email" autocomplete="email" required placeholder=" ">
+                <label for="form-field-6">Your Email</label>
+            </div>
+            <div class="input-group">
+                <input id="form-field-7" type="tel" name="phone" autocomplete="tel-national" inputmode="numeric" maxlength="14" required placeholder=" ">
+                <label for="form-field-7">Mobile Number</label>
+            </div>
+            <div class="input-group">
+                <input id="form-field-8" type="text" name="pan" maxlength="10" autocapitalize="characters" placeholder=" ">
+                <label for="form-field-8">PAN (optional, for 80G receipt)</label>
+            </div>
+            <p class="donate-hint" id="donateHint">Secure payment via Cashfree. UPI, cards, net banking &amp; wallets accepted.</p>
+            <button type="submit" class="submit-btn magnetic-target"><span class="submit-label">Donate ₹251</span> <i class="ph ph-arrow-right"></i></button>
+            <p role="status" class="form-status" id="donateFormStatus"></p>
+        </form>
+
+        <div class="donate-divider">
+            <span>or transfer directly</span>
         </div>
 
         <!-- Bank Account Details Card -->
@@ -421,39 +524,16 @@
                     <span class="bank-value">State Bank of India</span>
                 </div>
             </div>
+            <div class="bank-details-note">
+                <i class="ph ph-seal-check"></i>
+                <p>EERA is 12A &amp; 80G certified. Donations are eligible for tax benefits. PAN: AAGCE1945F</p>
+            </div>
         </div>
 
-        <div class="donate-divider">
-            <span>or send us a pledge</span>
-        </div>
-        
-        <form class="contact-form" action="https://api.web3forms.com/submit" method="POST" id="donateForm">
-            <!-- Web3Forms Access Key -->
-            <input type="hidden" name="access_key" value="546b5db8-9d31-4df0-a1fe-11091cb63e57">
-            <input type="hidden" name="subject" value="New Donation Pledge from EERA Website">
-            
-            <div class="input-group">
-                <input type="number" name="amount" required placeholder=" ">
-                <label>Pledge Amount (INR/USD)</label>
-            </div>
-            <div class="input-group">
-                <input type="text" name="name" required placeholder=" ">
-                <label>Your Name</label>
-            </div>
-            <div class="input-group">
-                <input type="email" name="email" required placeholder=" ">
-                <label>Your Email</label>
-            </div>
-            <div class="input-group">
-                <textarea name="message" placeholder=" " rows="2"></textarea>
-                <label>Any special notes?</label>
-            </div>
-            <button type="submit" class="submit-btn magnetic-target">Send Pledge <i class="ph ph-arrow-right"></i></button>
-            <p class="form-status" id="donateFormStatus"></p>
-        </form>
     </div>
 </div>
 
+<button class="back-top" type="button" aria-label="Back to top" hidden>↑</button>
 <script src="script.js"></script>
 </body>
 </html>

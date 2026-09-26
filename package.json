@@ -1,0 +1,8 @@
+{
+  "name": "eera-foundation",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  }
+}
