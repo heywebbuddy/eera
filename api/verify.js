@@ -10,13 +10,16 @@ export async function GET(request) {
         return json({ error: 'Invalid request' }, 400);
     }
 
+    // Only the first name is returned, for the thank-you greeting.
+    const firstName = details => String(details?.customer_name || '').trim().split(/\s+/)[0].slice(0, 40);
+
     try {
         if (type === 'order') {
             const order = await cashfree(`/orders/${encodeURIComponent(id)}`);
-            return json({ status: order.order_status, amount: order.order_amount });
+            return json({ status: order.order_status, amount: order.order_amount, name: firstName(order.customer_details), date: order.created_at });
         }
         const sub = await cashfree(`/subscriptions/${encodeURIComponent(id)}`);
-        return json({ status: sub.subscription_status, amount: sub.plan_details?.plan_amount });
+        return json({ status: sub.subscription_status, amount: sub.plan_details?.plan_amount, name: firstName(sub.customer_details), date: sub.subscription_first_charge_time || null });
     } catch (err) {
         return json({ error: 'Could not verify the payment' }, err.status === 404 ? 404 : 502);
     }

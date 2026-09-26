@@ -69,8 +69,8 @@
                 <div class="hero-intro reveal-fade">
                     <p class="hero-desc">A non-profit organization dedicated to healthcare, education, and social justice across India.</p>
                     <div class="hero-actions">
-                        <a class="hero-action" href="#initiatives">Explore our work <span aria-hidden="true">↗</span></a>
-                        <button class="hero-support open-donate">Make a difference <span aria-hidden="true">↗</span></button>
+                        <a class="hero-action" href="#initiatives">Explore our work <span aria-hidden="true"><i class="ph ph-arrow-up-right"></i></span></a>
+                        <button class="hero-support open-donate">Make a difference <span aria-hidden="true"><i class="ph ph-arrow-up-right"></i></span></button>
                     </div>
                 </div>
                 <a class="hero-scroll reveal-fade" href="#about" aria-label="Scroll to our mission">
@@ -304,6 +304,55 @@
                         <span>Watch Video</span>
                     </div>
                 </div>
+                <div class="gallery-item gallery-item-wide reveal-fade" data-index="9">
+                    <img src="assets/photos/photo_13930_0.jpg" alt="Patients registering at an EERA Human Health Foundation health camp" loading="lazy">
+                    <div class="gallery-overlay"><i class="ph ph-arrows-out"></i></div>
+                </div>
+                <div class="gallery-item gallery-item-tall reveal-fade" data-index="10">
+                    <img src="assets/photos/photo_13929_0.jpg" alt="Nurses caring for patients in hospital beds" loading="lazy">
+                    <div class="gallery-overlay"><i class="ph ph-arrows-out"></i></div>
+                </div>
+                <div class="gallery-item reveal-fade" data-index="11">
+                    <img src="assets/photos/photo_13935_0.jpg" alt="A student writing an exam at an EERA study centre" loading="lazy">
+                    <div class="gallery-overlay"><i class="ph ph-arrows-out"></i></div>
+                </div>
+                <div class="gallery-item gallery-item-tall reveal-fade" data-index="12">
+                    <img src="assets/photos/photo_13934_0.jpg" alt="Students studying at the EERA library desks" loading="lazy">
+                    <div class="gallery-overlay"><i class="ph ph-arrows-out"></i></div>
+                </div>
+                <div class="gallery-item gallery-item-video gallery-item-wide reveal-fade" data-index="13" aria-label="Play video: cricket practice with young players">
+                    <video src="assets/video_files/13941_file_13941_0.mp4" poster="assets/video_files/posters/13941.jpg" muted loop playsinline preload="none"></video>
+                    <div class="gallery-overlay video-overlay">
+                        <i class="ph ph-play-circle"></i>
+                        <span>Watch Video</span>
+                    </div>
+                </div>
+                <div class="gallery-item reveal-fade" data-index="14">
+                    <img src="assets/photos/photo_13939_0.jpg" alt="A young man completing a test paper at a study desk" loading="lazy">
+                    <div class="gallery-overlay"><i class="ph ph-arrows-out"></i></div>
+                </div>
+                <div class="gallery-item gallery-item-wide reveal-fade" data-index="15">
+                    <img src="assets/photos/photo_13936_0.jpg" alt="A class in session beneath the EERA Foundation banner" loading="lazy">
+                    <div class="gallery-overlay"><i class="ph ph-arrows-out"></i></div>
+                </div>
+                <div class="gallery-item gallery-item-video gallery-item-tall reveal-fade" data-index="16" aria-label="Play video: EERA general knowledge exam papers">
+                    <video src="assets/video_files/13933_file_13933_0.mp4" poster="assets/video_files/posters/13933.jpg" muted loop playsinline preload="none"></video>
+                    <div class="gallery-overlay video-overlay">
+                        <i class="ph ph-play-circle"></i>
+                        <span>Watch Video</span>
+                    </div>
+                </div>
+                <div class="gallery-item reveal-fade" data-index="17">
+                    <img src="assets/photos/photo_13938_0.jpg" alt="A teacher explaining lessons to students at the EERA centre" loading="lazy">
+                    <div class="gallery-overlay"><i class="ph ph-arrows-out"></i></div>
+                </div>
+                <div class="gallery-item gallery-item-video reveal-fade" data-index="18" aria-label="Play video: team fielding drills on the ground">
+                    <video src="assets/video_files/13942_file_13942_0.mp4" poster="assets/video_files/posters/13942.jpg" muted loop playsinline preload="none"></video>
+                    <div class="gallery-overlay video-overlay">
+                        <i class="ph ph-play-circle"></i>
+                        <span>Watch Video</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -496,6 +545,9 @@
             <p role="status" class="form-status" id="donateFormStatus"></p>
         </form>
 
+        <!-- Post-payment screen (confirming / thank you / not completed), rendered by script.js -->
+        <div class="donate-result" id="donateResult" aria-live="polite" hidden></div>
+
         <div class="donate-divider">
             <span>or transfer directly</span>
         </div>
@@ -533,7 +585,7 @@
     </div>
 </div>
 
-<button class="back-top" type="button" aria-label="Back to top" hidden>↑</button>
+<button class="back-top" type="button" aria-label="Back to top" hidden><i class="ph ph-arrow-up" aria-hidden="true"></i></button>
 <script src="script.js"></script>
 </body>
 </html>

@@ -4,3 +4,6 @@
 !.env.example
 .DS_Store
 .env*.local
+
+# Held back pending family consent; do not publish
+assets/photos/photo_13931_0.jpg

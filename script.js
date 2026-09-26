@@ -413,7 +413,7 @@ document.addEventListener('DOMContentLoaded', () => {
     galleryItems.forEach(item => {
         item.setAttribute('role', 'button');
         item.tabIndex = 0;
-        item.setAttribute('aria-label', item.querySelector('img')?.alt || 'Play health camp video');
+        if (!item.hasAttribute('aria-label')) item.setAttribute('aria-label', item.querySelector('img')?.alt || 'Play health camp video');
         item.addEventListener('keydown', event => {
             if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); item.click(); }
         });
@@ -505,19 +505,145 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!res.ok) throw new Error('verify failed');
             return res.json();
         };
-        const showDonationResult = (type, { status, amount }) => {
-            if (type === 'order' && status === 'PAID') {
-                setDonateStatus(`Thank you! Your donation of ${inr(amount)} was received. Cashfree will email your payment receipt.`, 'success');
-                donateForm.reset();
-                refreshDonateUI();
-            } else if (type === 'subscription' && status === 'ACTIVE') {
-                setDonateStatus(`Thank you! Your monthly donation of ${inr(amount)} is now active.`, 'success');
-                donateForm.reset();
-                refreshDonateUI();
-            } else if (type === 'subscription' && status === 'BANK_APPROVAL_PENDING') {
-                setDonateStatus('Thank you! Your bank is approving the monthly mandate. This can take a little while.', 'success');
+        // Post-payment screens: confirming → thank you / pending / not completed.
+        const donateResult = document.getElementById('donateResult');
+        const donatePanel = donateModal.querySelector('.modal-content');
+        const CONTACT_EMAIL = 'kirtivardhan075@gmail.com';
+        const esc = str => String(str ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+        const formatDate = value => {
+            const date = value ? new Date(value) : new Date();
+            return (isNaN(date) ? new Date() : date).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+        };
+        const mailto = (subject, body) => `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+        const seal = kind => kind === 'success'
+            ? '<svg class="dr-seal-svg" viewBox="0 0 52 52" aria-hidden="true"><circle class="dr-seal-ring" cx="26" cy="26" r="24"/><path class="dr-seal-mark" d="M15.5 27.5l7 7 14-15"/></svg>'
+            : kind === 'pending'
+                ? '<i class="ph ph-hourglass-medium" aria-hidden="true"></i>'
+                : '<i class="ph ph-warning-circle" aria-hidden="true"></i>';
+
+        const receipt = rows => `<dl class="dr-receipt">${rows.map(([label, value]) => `<div class="dr-row"><dt>${label}</dt><dd>${value}</dd></div>`).join('')}</dl>`;
+        const refValue = id => `<span class="dr-ref">${esc(id)}</span><button type="button" class="dr-copy" data-copy="${esc(id)}" aria-label="Copy reference ID"><i class="ph ph-copy"></i></button>`;
+
+        const confetti = () => {
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return '';
+            const colors = ['var(--clr-accent)', '#E7A33E', 'var(--clr-text)', '#D9C7B0'];
+            return `<div class="dr-confetti" aria-hidden="true">${Array.from({ length: 28 }, (_, i) =>
+                `<span style="--x:${Math.round(Math.random() * 100)}%;--dx:${Math.round((Math.random() - 0.5) * 160)}px;--r:${Math.round(Math.random() * 720 - 360)}deg;--d:${(Math.random() * 0.5).toFixed(2)}s;--c:${colors[i % colors.length]}"></span>`
+            ).join('')}</div>`;
+        };
+
+        const showDonateForm = () => {
+            donatePanel.classList.remove('is-result');
+            donateResult.hidden = true;
+            donateResult.innerHTML = '';
+        };
+
+        const renderDonateResult = (state, info = {}) => {
+            const { id = '', amount, name, date, monthly } = info;
+            const amountText = amount ? inr(amount) + (monthly ? ' / month' : '') : '';
+            let html;
+
+            if (state === 'verifying') {
+                html = `
+                    <div class="dr-seal dr-seal--verifying"><span class="dr-spinner" aria-hidden="true"></span></div>
+                    <p class="dr-eyebrow">( One moment )</p>
+                    <h2 class="dr-title" tabindex="-1">Confirming your <span class="italic">donation…</span></h2>
+                    <p class="dr-lead">We're checking with the payment gateway. Please keep this window open.</p>`;
+            } else if (state === 'success') {
+                const shareText = `I just donated to EERA Foundation to support healthcare and education for communities across Bihar & Jharkhand. Join me: ${location.origin}`;
+                html = `
+                    ${confetti()}
+                    <div class="dr-seal dr-seal--success">${seal('success')}</div>
+                    <p class="dr-eyebrow">( ${monthly ? 'Monthly donation active' : 'Donation received'} )</p>
+                    <h2 class="dr-title" tabindex="-1">Thank you${name ? `, <span class="italic">${esc(name)}.</span>` : '<span class="italic">.</span>'}</h2>
+                    <p class="dr-lead">Your ${monthly ? 'monthly gift' : 'gift'} of <strong>${amountText}</strong> helps us run health camps and keep our education centres open for children across Bihar &amp; Jharkhand.</p>
+                    ${receipt([
+                        ['Amount', `<span class="dr-amount">${amountText}</span>`],
+                        ['Date', formatDate(date)],
+                        ['Reference', refValue(id)],
+                        ['Status', `<span class="dr-pill dr-pill--ok">${monthly ? 'Active' : 'Paid'}</span>`],
+                    ])}
+                    <div class="dr-note">
+                        <i class="ph ph-seal-check" aria-hidden="true"></i>
+                        <p>A payment receipt is on its way to your email. EERA is <strong>12A &amp; 80G certified</strong> — for your 80G tax certificate, <a href="${mailto(`80G receipt request — ${id}`, `Hello EERA team,\n\nPlease share the 80G receipt for my donation.\n\nName:\nPAN:\nAmount: ${amountText}\nReference: ${id}\n`)}">email us your PAN</a> with this reference.</p>
+                    </div>
+                    <div class="dr-actions">
+                        <a class="submit-btn dr-btn" href="https://wa.me/?text=${encodeURIComponent(shareText)}" target="_blank" rel="noopener"><span>Share on WhatsApp</span> <i class="ph ph-whatsapp-logo"></i></a>
+                        <button type="button" class="dr-link" data-action="done">Back to the website</button>
+                    </div>`;
+            } else if (state === 'pending') {
+                html = `
+                    <div class="dr-seal dr-seal--pending">${seal('pending')}</div>
+                    <p class="dr-eyebrow">( Almost there )</p>
+                    <h2 class="dr-title" tabindex="-1">Your bank is <span class="italic">approving it.</span></h2>
+                    <p class="dr-lead">Thank you${name ? `, ${esc(name)}` : ''}! Your monthly donation of <strong>${amountText}</strong> is waiting for your bank's approval. This can take a little while — we'll take it from there.</p>
+                    ${receipt([['Reference', refValue(id)], ['Status', '<span class="dr-pill dr-pill--wait">Pending approval</span>']])}
+                    <div class="dr-actions"><button type="button" class="submit-btn dr-btn" data-action="done"><span>Back to the website</span> <i class="ph ph-arrow-right"></i></button></div>`;
             } else {
-                setDonateStatus('The payment was not completed. No money was taken. Please try again.', 'error');
+                const unknown = state === 'unknown';
+                html = `
+                    <div class="dr-seal dr-seal--error">${seal('error')}</div>
+                    <p class="dr-eyebrow">( ${unknown ? 'Still checking' : 'Payment not completed'} )</p>
+                    <h2 class="dr-title" tabindex="-1">${unknown ? 'We couldn\'t confirm it <span class="italic">just yet.</span>' : 'The payment didn\'t <span class="italic">go through.</span>'}</h2>
+                    <p class="dr-lead">${unknown
+                        ? 'Your payment may still be processing. Please check your email for a receipt before trying again.'
+                        : 'No donation was recorded. If any amount was debited, your bank usually reverses it automatically — write to us with the reference below if it doesn\'t.'}</p>
+                    ${id ? receipt([...(amount ? [['Amount', `<span class="dr-amount">${amountText}</span>`]] : []), ['Reference', refValue(id)], ['Status', `<span class="dr-pill dr-pill--fail">${unknown ? 'Unconfirmed' : 'Not paid'}</span>`]]) : ''}
+                    <div class="dr-actions">
+                        <button type="button" class="submit-btn dr-btn" data-action="retry"><span>Try again</span> <i class="ph ph-arrow-counter-clockwise"></i></button>
+                        <a class="dr-link" href="${mailto(`Donation help — ${id}`, `Hello EERA team,\n\nI need help with my donation.\n\nReference: ${id}\n`)}">Contact us</a>
+                    </div>`;
+            }
+
+            donateResult.innerHTML = html;
+            donateResult.hidden = false;
+            donatePanel.classList.add('is-result');
+            donatePanel.scrollTo({ top: 0 });
+            donateResult.querySelector('.dr-title')?.focus({ preventScroll: true });
+        };
+
+        donateResult.addEventListener('click', async (e) => {
+            const copy = e.target.closest('.dr-copy');
+            if (copy) {
+                try { await navigator.clipboard.writeText(copy.dataset.copy); }
+                catch {
+                    // Older/locked-down browsers: copy through a temporary field.
+                    const tmp = Object.assign(document.createElement('textarea'), { value: copy.dataset.copy });
+                    tmp.style.cssText = 'position:fixed;opacity:0';
+                    copy.after(tmp); tmp.select();
+                    const ok = document.execCommand('copy');
+                    tmp.remove();
+                    if (!ok) return;
+                }
+                copy.innerHTML = '<i class="ph ph-check"></i>';
+                copy.classList.add('is-copied');
+                setTimeout(() => { copy.innerHTML = '<i class="ph ph-copy"></i>'; copy.classList.remove('is-copied'); }, 1600);
+                return;
+            }
+            const action = e.target.closest('[data-action]')?.dataset.action;
+            if (action === 'retry') { showDonateForm(); fields.amount.focus({ preventScroll: true }); }
+            if (action === 'done') hideDialog();
+        });
+        // Reopening the modal after a result starts from a fresh form.
+        donateModal.querySelectorAll('.close-donate').forEach(btn => btn.addEventListener('click', () => {
+            if (!donateResult.hidden) setTimeout(showDonateForm, 650);
+        }));
+        document.querySelectorAll('.open-donate').forEach(btn => btn.addEventListener('click', () => {
+            if (!donateResult.hidden && !donateResult.querySelector('.dr-spinner')) showDonateForm();
+        }));
+
+        const showDonationResult = (type, id, { status, amount, name, date }) => {
+            const monthly = type === 'subscription';
+            const info = { id, amount, name, date, monthly };
+            if ((!monthly && status === 'PAID') || (monthly && status === 'ACTIVE')) {
+                renderDonateResult('success', info);
+                donateForm.reset();
+                refreshDonateUI();
+            } else if (monthly && status === 'BANK_APPROVAL_PENDING') {
+                renderDonateResult('pending', info);
+            } else {
+                renderDonateResult('failed', info);
             }
         };
 
@@ -551,8 +677,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 const result = await cashfree.checkout({ paymentSessionId: data.sessionId, redirectTarget: '_modal' });
                 if (result.redirect) return;
-                setDonateStatus('Confirming your payment...');
-                showDonationResult('order', await verifyDonation('order', data.id));
+                const firstName = fields.name.value.trim().split(/\s+/)[0];
+                renderDonateResult('verifying');
+                let verified;
+                try { verified = await verifyDonation('order', data.id); }
+                catch { renderDonateResult('unknown', { id: data.id, amount: payload.amount }); return; }
+                if (verified.status === 'ACTIVE' && result.error) {
+                    // Donor closed the payment window without paying: back to the form, gently.
+                    showDonateForm();
+                    setDonateStatus('Payment window closed. No money was taken, so you can try again whenever you\'re ready.');
+                    return;
+                }
+                showDonationResult('order', data.id, { ...verified, name: verified.name || firstName });
             } catch (err) {
                 setDonateStatus(err.message.includes('SDK') || err instanceof TypeError
                     ? 'Network error. Please check your connection and try again.'
@@ -571,10 +707,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if ((returnType === 'order' || returnType === 'subscription') && returnId) {
             history.replaceState(null, '', location.pathname + location.hash);
             showDialog(donateModal);
-            setDonateStatus('Confirming your donation...');
+            renderDonateResult('verifying');
             verifyDonation(returnType, returnId)
-                .then(result => showDonationResult(returnType, result))
-                .catch(() => setDonateStatus('We could not confirm the payment yet. If money was debited, please contact us and we will sort it out.', 'error'));
+                .then(result => showDonationResult(returnType, returnId, result))
+                .catch(() => renderDonateResult('unknown', { id: returnId }));
         }
 
         refreshDonateUI();
